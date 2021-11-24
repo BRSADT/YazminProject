@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<div class="center">
+
+  <div class="row justify-content-center mt-4" id="select_laboratorio">
+    <mat-form-field appearance="fill" class="col-4">
+      <mat-label>Selecciona un laboratorio</mat-label>
+      <mat-select [(value)]="laboratory" (selectionChange)="updateDashboard()">
+        <mat-option *ngFor="let lab of laboratories" [value]="lab?.id_laboratorio"> {{lab?.nombre_lab}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="row justify-content-center mt-4" id="dashboard" *ngIf="laboratory != ''">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="modulo">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> {{modulesHours[element.modulo]}} </td>
+      </ng-container>
+
+      <ng-container *ngFor="let col of ['lunes', 'martes', 'miercoles', 'jueves', 'viernes']; let i = index">
+        <ng-container [matColumnDef]="col">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="row justify-content-center">
+              <h5>{{ col | titlecase }}</h5>
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="row justify-content-center">
+              <ng-container *ngIf="element[col]; else addExtraClassTemplate">
+                <button type="button" mat-flat-button color="primary" (click)="openDialog(modulesHours[element.modulo], i)">
+                  Agregar
+                </button>
+              </ng-container>
+              <ng-template #addExtraClassTemplate>
+                Temas de electronica II
+              </ng-template>
+            </div>
+          </td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns;" [ngClass]="{gray: even}" class="table-row"></tr>
+    </table>
+  </div>
+</div>

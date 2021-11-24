@@ -1,0 +1,16 @@
+a {
+    color: #ffffff;
+}
+a:hover {
+    color: #dfdfdf;
+}
+.a-nav {
+    color: #000000;
+}
+.a-nav:hover {
+    color: #cacaca !important;
+}
+.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: .35rem;
+}

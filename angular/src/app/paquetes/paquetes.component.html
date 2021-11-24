@@ -1,0 +1,287 @@
+<!-- <div class="accordion mx-auto mt-5 list-width text-center" id="accordionExample">
+
+    <div class="card">
+        <div class="card-header bg-blue" id="headingOne">
+            <h4 class="mb-0 text-white">
+                Paquetes
+            </h4>
+        </div>
+    </div>
+
+    <div class="card" *ngFor="let package of valeData; let i = index">
+        <div class="card-header bg-gray" id="headingOne">
+            <h2 class="mb-0 text-dark">
+                <button (click)="modalPackage(i)" class="btn btn-block bg-gray" type="button">
+                    {{package.nombre}}
+                </button>
+            </h2>
+        </div>
+
+        <div [id]="'collapse'+i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body p-0" *ngFor="let item of valeData, let i = index">
+                <ul class="list-group">
+                    <li (click)="modalPackage(i)" class="list-group-item no-borderx"> {{package.nombreAsignatura}} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<button #openModalPackage type="button" class="d-none" data-toggle="modal" data-target="#modalPackageView"></button>
+
+<div class="modal fade" id="modalPackageView" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modalPackageViewTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mx-auto m-0" id="modalPackageViewTitle">{{modalValeData?.nombre}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row border-top border-bottom">
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">PLANTEL</span> {{modalValeData?.plantel}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">FECHA</span> {{modalValeData?.fecha}}</p>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="col">
+                        <p class="m-0"><span class="font-weight-bold">CARRERA</span> {{modalValeData?.carrera}}</p>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="col">
+                        <p class="m-0"><span class="font-weight-bold">LABORATORIO O TALLER</span>
+                            {{modalValeData?.nombre_lab}}</p>
+                    </div>
+                </div>
+
+                <div class="row border-top border-bottom">
+                    <div class="col text-center">
+                        <p class="m-0"><span class="font-weight-bold">DATOS DEL ALUMNO</span></p>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="col">
+                        <p class="m-0"><span class="font-weight-bold">NOMBRE</span> {{modalValeData?.nombreEstudiante |
+                            uppercase}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom">
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">REGISTRO</span> {{modalValeData?.id_registro}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">GRUPO</span> {{modalValeData?.grupo}}</p>
+                    </div>
+                </div>
+
+                <div class="row border-top border-bottom">
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">HR SALIDA</span> {{modalValeData?.hora_salida}}
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="m-0"><span class="font-weight-bold">HR ENTRADA</span> {{modalValeData?.hora_entrada}}
+                        </p>
+                    </div>
+                </div>
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="p-2">CANT</th>
+                            <th class="p-2">HERRAMIENTAS MAT O EQUIPO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let material of modalValeData?.materiales">
+                            <td scope="row"> {{material.cantidad}} </td>
+                            <td> {{material.nombre}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row border-top border-bottom">
+                    <div class="col">
+                        <p class="m-0"><span class="font-weight-bold">PROFESOR</span> {{modalValeData?.nombreDoc |
+                            uppercase}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-3">
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-blue text-light mr-5">Agregar Herr/Equip</button>
+                        <button type="button" class="btn btn-blue text-light" data-dismiss="modal">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="accordion mx-auto mt-5 list-width text-center" id="accordionExample">
+
+    <div class="card">
+        <div class="card-header bg-blue" id="headingOne">
+            <h4 class="mb-0 text-white">
+                Paquetes
+            </h4>
+        </div>
+    </div>
+
+    <div class="card">
+        <!-- <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body p-0" *ngFor="let item of valeFirm "></div>
+            <ul class="list-group">
+                <button (click)="firmVal()"></button>/>
+            </ul>
+        </div> -->
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-students" role="tabpanel"
+                aria-labelledby="pills-students-tab">
+                <table class="table table-stripe mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 25%;">DOCENTE</th>
+                            <th scope="col" style="width: 25%;">LABORATÓRIO</th>
+                            <th scope="col" style="width: 25%;">ASIGNATURA</th>
+                            <th scope="col" style="width: 25%;">ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let package of packages; let i = index">
+                            <td class="align-middle"> {{package.nombreDocente}} </td>
+                            <td class="align-middle"> {{package.nombre_lab}} </td>
+                            <td class="align-middle"> {{package.nombre}} </td>
+                            <td class="align-middle">
+                                <button (click)="viewVale(i, package.id_vale)" data-toggle='modal'
+                                    data-target="#valeStudent" class=" btn btn-blue text-light">VER</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="valeStudent">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">INFORMACIÓN PAQUETE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DOCENTE</th>
+                                <th scope="col">LAB</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="cool">FECHA DE CREACION</th>
+                                <th scope="col">HORA SALIDA - ENTRADA</th>
+                                <th scope="col">CARRERA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="dataPackages">
+                                <td class="align-middle"> {{dataPackages.nombreDocente}} </td>
+                                <td class="align-middle"> {{dataPackages.nombre_lab}} </td>
+                                <td class="align-middle"> {{dataPackages.fecha}} </td>
+                                <td class="align-middle"> {{dataPackages.fecha_creacion}} </td>
+                                <td class="align-middle"> {{dataPackages.hora_salida}} -
+                                    {{dataPackages.hora_entrada}}
+                                </td>
+                                <td class="align-middle"> {{dataPackages.carrera}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">MATERIAL</th>
+                            <th scope="col">NO. INVENTARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataPackagesMaterials">
+                            <td class="align-middle"> {{item.nombre}} </td>
+                            <td class="align-middle"> {{item.no_inv}} </td>
+
+                            <tr *ngFor="let item of items; let i = index">
+                                <td class="align-middle"> {{item.nombre}} </td>
+                                <td class="align-middle"> {{item.no_inventario}} </td>
+                                <td class="align-middle">
+                                    <button (click)="removeElement(i)" type="button" class="close">
+                                        <span class="text-danger">&times;</span>
+                                    </button>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue text-light mr-5" data-toggle="modal"
+                data-target="#modalAddEquipment">Agregar Herr/Equip</button>
+                 <button type="button" class="btn btn-blue text-light mr-2"
+                    data-dismiss="modal" [disabled]="!btnSend">ENVIAR</button>
+                <button type="button" class="btn btn-danger text-light ml-5" data-dismiss="modal">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalAddEquipment" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modalAddEquipmentTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mx-auto m-0" id="modalAddEquipmentTitle">Agregar Herramientas/Equipos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mb-3 text-center">Toca el material para agregarlo</h5>
+                <div style="max-height: 720px; overflow-y: scroll;">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <!-- <th>Cantidad</th> -->
+                                <th>Nombre</th>
+                                <th>No. Inventario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr (click)="itemSelected(i, item.id_item, item.nombre, item.no_inventario)"
+                                *ngFor="let item of dataWarehouse; let i = index">
+                                <!-- <td class="align-middle">
+                                    <input class="form-control" style="width: 80px;" type="number" min="1" value="1">
+                                </td> -->
+                                <td class="align-middle"> {{item.nombre}} </td>
+                                <td class="align-middle"> {{item.no_inventario}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue text-light" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+button:focus {
+    box-shadow: none !important;
+}
+.bg-img {
+    background-image: url('./assets/img/inicio.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.vh100 {
+    height: 100vh;
+}
+.box-center {
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.container-lgn-form {
+    width: 25%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: rgba(255,255,255,.6);
+}
+.btn-large {
+    width: 45%;
+}
+.navbar-blue, .bg-blue, .btn-blue, .nav-link.active {
+    background-color: #3b3bfb !important;
+}
+.btn-blue:hover {
+    background-color: #3636d8 !important;
+}
+.bg-gray {
+    background-color: #d8d8d8;
+}
+.text-blue {
+    color: #3b3bfb;
+}
+.list-width {
+    width: 50%;
+}
+.no-borderx {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+@media (min-width: 425px) {
+    .container-lgn-form {
+        width: 90%;
+    }
+    .bg-img {
+        background-position: center;
+    }
+    .list-width {
+        width: 80%;
+    }
+}
+@media (min-width: 768px) {
+    .container-lgn-form {
+        width: 50%;
+    }
+    .list-width {
+        width: 80%;
+    }
+}
+@media (min-width: 1024px) {
+    .container-lgn-form {
+        width: 35%;
+    }
+    .list-width {
+        width: 50%;
+    }
+}
+@media (min-width: 1440px) {
+    .container-lgn-form {
+        width: 25%;
+    }
+    .list-width {
+        width: 40%;
+    }
+}
+
+ 
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

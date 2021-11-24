@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row mt-9">
+    <div class="col-12 justify-content-center">
+      <p>REV.A <span class="ml-6">FSGC-214-7-002</span></p>
+    </div>
+
+    <form (ngSubmit)="overClass()" id="overtimeClassForm" [formGroup]="overForm">
+
+      <div class="form-row ">
+        <div class="form-group col-4">
+          <input type="text" class="form-control" formControlName="squad" placeholder="PLANTEL">
+        </div>
+        <div class="form-group col-4">
+          <input type="text" class="form-control" formControlName="level" placeholder="NIVEL">
+        </div>
+        <div class="form-group col-4">
+          <input type="text" class="form-control" formControlName="period" placeholder="PERIODO">
+        </div>
+        <div class="form-group col-12">
+          <input type="text" class="form-control" formControlName="career" placeholder="DIVISION">
+        </div>
+
+        <div class="form-group col-12">
+          <select class="form-control" formControlName="laboratory">
+            <option [value]="lab?.id_laboratorio" selected> {{lab?.nombre_lab}} </option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-4">
+            <label for="hora_salida">FECHA</label>
+            <input type="text" class="form-control" formControlName="fecha" id="fecha" placeholder="FECHA">
+          </div>
+
+          <div class="form-group col-4">
+            <label for="hora_salida">HORA DE ENTRADA</label>
+            <input type="text" class="form-control" id="hora_entrada" formControlName="hora_entrada"
+              placeholder="HR Entrada">
+          </div>
+
+          <div class="form-group col-4">
+            <label for="hora_salida">HORA DE SALIDA</label>
+            <input type="text" class="form-control" id="hora_salida" formControlName="hora_salida"
+              placeholder="HR Salida">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+          <input type="text" class="form-control" formControlName="nameTeacher" placeholder="PROFESOR">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-7">
+          <select class="form-control" formControlName="subject">
+            <option value="" selected>MATERIA</option>
+            <option disabled></option>
+            <option *ngFor="let subject of dataSubjects" [value]="subject.id_asignatura"> {{subject.nombre}} </option>
+          </select>
+        </div>
+        <div class="form-group col-5">
+          <input (blur)="obtainStudentsByGroup()" type="text" class="form-control" formControlName="group"
+            placeholder="GRADO Y GRUPO">       
+        
+        </div> 
+         <div class="form-group  col-1">
+          <button  class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+      </div>
+      <ng-container *ngIf="students.length > 0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="p-2">REGISTRO</th>
+              <th class="p-2">NOMBRE DEL ESTUDIANTE</th>
+              <th class="p-2">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students; let i = index">
+              <td class="align-middle"> {{i+1}}</td>
+              <td class="align-middle"> {{student.registro}} </td>
+              <td class="align-middle"> {{student.nombreEstudiante}} </td>
+              <td class="align-middle col-1 text-center">
+                <button (click)="removeStudent(i)" type="button" class="btn btn-danger">
+                  <span>&times;</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </ng-container>
+    </form>
+  </div>
+</div>

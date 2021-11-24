@@ -1,0 +1,21 @@
+a {
+    color: #ffffff;
+}
+a:hover {
+    color: #dfdfdf;
+}
+.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: .35rem;
+}
+.close {
+    float: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 0;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+.close:focus {
+    outline: none !important;
+}

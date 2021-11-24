@@ -1,0 +1,102 @@
+<div class="accordion mx-auto list-width text-center" id="accordionExample">
+
+    <div class="card">
+        <!-- <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body p-0" *ngFor="let item of valeFirm "></div>
+            <ul class="list-group">
+                <button (click)="firmVal()"></button>/>
+            </ul>
+        </div> -->
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-students" role="tabpanel"
+                aria-labelledby="pills-students-tab">
+                <table class="table table-stripe mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 30%;">LABORATÓRIO</th>
+                            <th scope="col" style="width: 30%;">ASIGNATURA</th>
+                            <th scope="col" style="width: 40%;">ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tPackage of teacherPackages; let i = index">
+                            <td class="align-middle"> {{tPackage.nombre_lab}} </td>
+                            <td class="align-middle"> {{tPackage.nombre}} </td>
+                            <td class="align-middle">
+                                <button (click)="viewVale(i, tPackage.id_vale)" data-toggle='modal'
+                                    data-target="#valeStudent" class=" btn btn-blue text-light">ABRIR</button>
+                                <button (click)="deletePackage(tPackage.id_vale)"
+                                    class="btn btn-danger ml-3 text-light">ELIMINAR</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="valeStudent">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">INFORMACIÓN PAQUETE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DOCENTE</th>
+                                <th scope="col">LAB</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="cool">FECHA DE CREACION</th>
+                                <th scope="col">HORA SALIDA - ENTRADA</th>
+                                <th scope="col">CARRERA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="dataTeacherPackages">
+                                <td class="align-middle"> {{dataTeacherPackages.nombreDocente}} </td>
+                                <td class="align-middle"> {{dataTeacherPackages.nombre_lab}} </td>
+                                <td class="align-middle"> {{dataTeacherPackages.fecha}} </td>
+                                <td class="align-middle"> {{dataTeacherPackages.fecha_creacion}} </td>
+                                <td class="align-middle"> {{dataTeacherPackages.hora_salida}} -
+                                    {{dataTeacherPackages.hora_entrada}}
+                                </td>
+                                <td class="align-middle"> {{dataTeacherPackages.carrera}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">MATERIAL</th>
+                            <th scope="col">NO. INVENTARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataTeacherPackagesMaterials">
+                            <td class="align-middle"> {{item.nombre}} </td>
+                            <td class="align-middle"> {{item.no_inv}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <!-- <button (click)="firmVale(dataTeacherPackages.id_vale)" type="button"
+                    class="btn btn-blue text-light mr-2" data-dismiss="modal" [disabled]="!disable">FIRMAR</button>
+                <button (click)="removeVal(dataTeacherPackages.id_vale)" type="button" class="btn btn-warning mr-2"
+                    data-dismiss="modal">RECHAZAR</button> -->
+                <button type="button" class="btn btn-danger text-light ml-5" data-dismiss="modal">CERRAR</button>
+            </div>
+        </div>
+    </div>
+</div>

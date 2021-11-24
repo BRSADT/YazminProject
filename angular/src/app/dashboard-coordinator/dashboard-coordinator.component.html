@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<app-paquetes></app-paquetes>
+
+<button #btnModal type="button" class="d-none" data-toggle="modal" data-target="#changePassword"></button>
+
+<div class="modal fade" id="changePassword" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="changePasswordTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mx-auto m-0" id="changePasswordTitle">Cambiar contraseña</h5>
+                <button #closeModalChangePassword type="button" class="d-none" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="changePassword()" [formGroup]="changePasswordForm">
+                    <input type="password" class="form-control" formControlName="newPassword"
+                        placeholder="Contraseña nueva">
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary btn-large">Cambiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="bg-img">
+    <div class="container-fluid vh100 box-center">
+        <!-- <div class="col-12 p-0">
+            <img src="../../assets/img/inicio.png">
+        </div> -->
+        <div class="container-lgn-form">
+            <div class="p-5 border">
+                <h3 class="text-center">Inicio de sesión</h3>
+                <form (ngSubmit)="login()" [formGroup]="loginForm">
+                    <div class="form-group">
+                        <input class="form-control mb-3" type="text" formControlName="username" placeholder="Usuario">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control mb-3" type="password" formControlName="password"
+                            placeholder="Contraseña">
+                    </div>
+                    <div class="form-group text-center m-0">
+                        <button class="btn btn-primary btn-large" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

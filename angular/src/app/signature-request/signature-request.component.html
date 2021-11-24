@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<!-- <div *ngIf="!dataExtraClass">
+    <h5 class="text-center">PETICIONES EXTRA CLASE</h5>
+</div> -->
+
+<div class="accordion mx-auto mt-5 list-width text-center" id="accordionExample">
+
+    <div class="card">
+        <div class="card-header bg-blue" id="headingOne">
+            <h4 class="mb-0 text-white">
+                VALIDAR / FIRMA DE FORMATOS EXTRA CLASE
+            </h4>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-gray" id="headingOne">
+            <h2 class="mb-0 text-dark">
+                <button class="btn btn-block bg-gray" type="button" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne"></button>
+            </h2>
+            <button class="btn btn-blue text-light" (click)="obtainGeneralHours()">Ver formatos</button>
+        </div>
+
+        <div class="tab-content" id="pills-tabContent" *ngIf="dataExtraClass">
+            <table class="table table-stripe">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE DOCENTE</th>
+                        <th scope="col">LABORATORIO</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">ASIGNATURA</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataExtraClass; let i = index">
+                        <td class="align-middle"> {{item.nombreDocente}} </td>
+                        <td class="align-middle"> {{item.nombre_lab}} </td>
+                        <td class="align-middle"> {{item.fecha}} </td>
+                        <td class="align-middle"> {{item.nombre}} </td>
+                        <!-- item es l aiteración, . es el acceso al objeto y atriuto es lo que se va a mostrar  -->
+                        <td class="align-middle">
+                            <button (click)="firmExtraClass(item.id_hora_extra)"
+                                class=" btn btn-blue text-light mr-2">FIRMA</button>
+                            <button (click)="removeHours(item.id_hora_extra)" class="btn btn-blue text-lightm" id="borrar">RECHAZAR</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

@@ -1,0 +1,220 @@
+<nav class="navbar navbar-expand-lg navbar-blue">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard">Horario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Vales adeudo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Llenado de base de datos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Gráficas</a>
+            </li>
+        </ul>
+
+        <button class="btn btn-light text-blue my-2 my-sm-0" type="submit">Cerrar sesión</button>
+    </div>
+</nav>
+
+<div class="container">
+    <ul class="nav nav-pills my-3 justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a (click)="obtainDataDebts(1)" class="nav-link a-nav" id="pills-students-tab" data-toggle="pill"
+                href="#pills-students" role="tab" aria-controls="pills-home" aria-selected="true">ESTUDIANTES</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a (click)="obtainDataDebts(0)" class="nav-link a-nav" id="pills-doc-tab" data-toggle="pill"
+                href="#pills-doc" role="tab" aria-controls="pills-profile" aria-selected="false">DOCENTES</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent" *ngIf="dataDebts">
+        <div class="tab-pane fade show active" id="pills-students" role="tabpanel" aria-labelledby="pills-students-tab">
+            <table class="table table-stripe">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE DOCENTE</th>
+                        <th scope="col">NOMBRE ESTUDIANTE</th>
+                        <th scope="col">LABORATORIO</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataDebts; let i = index">
+                        <td class="align-middle"> {{item.nombreDocente}} </td>
+                        <td class="align-middle"> {{item.nombreEstudiante}} </td>
+                        <td class="align-middle"> {{item.nombre_lab}} </td>
+                        <td class="align-middle"> {{item.fecha}} </td>
+                        <!-- item es l aiteración, . es el acceso al objeto y atriuto es lo que se va a mostrar  -->
+                        <td class="align-middle">
+                            <button (click)="viewVale(i, item.id_vale)" data-toggle='modal' data-target="#valeStudent"
+                                class=" btn btn-blue text-light mr-2" id="accioar">VER</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-doc" role="tabpanel" aria-labelledby="pills-doc-tab">
+            <table class="table table-stripe">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE DOCENTE</th>
+                        <th scope="col">LABORATORIO</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataDebts; let i = index">
+                        <td class="align-middle"> {{item.nombreDocente}} </td>
+                        <td class="align-middle"> {{item.nombre_lab}} </td>
+                        <td class="align-middle"> {{item.fecha}} </td>
+                        <td class="align-middle">
+                            <button (click)="viewVale(i, item.id_vale)" data-toggle='modal' data-target="#valeTeacher"
+                                class=" btn btn-blue text-light mr-2">VER</button>
+                            <button (click)="removeDebt(i, item.id_vale)" class="btn btn-blue text-light"
+                                id="borrar">ELIMINAR</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="!dataDebts">
+        <h5 class="text-center">Para ver los vales con adeudo selecciona alguna de las opciones de arriba (ESTUDIANTES O
+            DOCENTES)</h5>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="valeTeacher">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ADEUDO DOCENTE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DOCENTE</th>
+                                <th scope="col">LAB</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="col">HORA SALIDA - ENTRADA</th>
+                                <!-- <th scope="col">PLANTEL</th> -->
+                                <th scope="col">CARRERA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="dataDebtVale">
+                                <td class="align-middle"> {{dataDebtVale.nombreDocente}} </td>
+                                <td class="align-middle"> {{dataDebtVale.nombre_lab}} </td>
+                                <td class="align-middle"> {{dataDebtVale.fecha}} </td>
+                                <td class="align-middle"> {{dataDebtVale.hora_salida}} - {{dataDebtVale.hora_entrada}}
+                                </td>
+                                <!-- <td class="align-middle"> {{dataDebtVale.plantel}} </td> -->
+                                <td class="align-middle"> {{dataDebtVale.carrera}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">MATERIAL</th>
+                            <th scope="col">NO. INVENTARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataDebtValeMaterials">
+                            <td class="align-middle"> {{item.nombre}} </td>
+                            <td class="align-middle"> {{item.no_inv}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue text-light mr-2" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="valeStudent">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ADEUDO ESTUDIANTE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DOCENTE</th>
+                                <th scope="col">ESTUDIANTE</th>
+                                <th scope="col">LAB</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="col">HORA SALIDA - ENTRADA</th>
+                                <!-- <th scope="col">PLANTEL</th> -->
+                                <th scope="col">CARRERA</th>
+                                <th scope="col">GRUPO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="dataDebtVale">
+                                <td class="align-middle"> {{dataDebtVale.nombreDocente}} </td>
+                                <td class="align-middle"> {{dataDebtVale.nombreEstudiante}} </td>
+                                <td class="align-middle"> {{dataDebtVale.nombre_lab}} </td>
+                                <td class="align-middle"> {{dataDebtVale.fecha}} </td>
+                                <td class="align-middle"> {{dataDebtVale.hora_salida}} - {{dataDebtVale.hora_entrada}}
+                                </td>
+                                <!-- <td class="align-middle"> {{dataDebtVale.plantel}} </td> -->
+                                <td class="align-middle"> {{dataDebtVale.carrera}} </td>
+                                <td class="align-middle"> {{dataDebtVale.grupo}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">MATERIAL</th>
+                            <th scope="col">NO. INVENTARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataDebtValeMaterials">
+                            <td class="align-middle"> {{item.nombre}} </td>
+                            <td class="align-middle"> {{item.no_inv}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue text-light mr-2" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+
+<div class="accordion mx-auto mt-5 list-width text-center" id="accordionExample">
+
+    <div class="card">
+        <div class="card-header bg-blue" id="headingOne">
+            <h4 class="mb-0 text-white">
+                VALIDAR / FIRMA DE VALES
+            </h4>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-gray" id="headingOne">
+            <h2 class="mb-0 text-dark">
+                <button class="btn btn-block bg-gray" type="button" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne"></button>
+            </h2>
+            <button class="btn btn-blue text-light" (click)="asigment()">Ver vales</button>
+        </div>
+
+        <!-- <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body p-0" *ngFor="let item of valeFirm "></div>
+            <ul class="list-group">
+                <button (click)="firmVal()"></button>/>
+            </ul>
+        </div> -->
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-students" role="tabpanel"
+                aria-labelledby="pills-students-tab">
+                <table class="table table-stripe mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 50%;">NOMBRE ESTUDIANTE</th>
+                            <th scope="col" style="width: 25%;">GRADO Y GRUPO</th>
+                            <th scope="col" style="width: 25%;">ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of firmVales; let i = index">
+                            <td class="align-middle"> {{item.nombreEstudiante}} </td>
+                            <td class="align-middle"> {{item.gradoGrupo}} </td>
+                            <td class="align-middle">
+                                <button (click)="viewVale(i, item.id_vale)" data-toggle='modal'
+                                    data-target="#valeStudent" class=" btn btn-blue text-light"
+                                    id="accioar">ABRIR</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="valeStudent">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">PARA FIRMAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">DOCENTE</th>
+                                <th scope="col">ESTUDIANTE</th>
+                                <th scope="col">LAB</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="cool">FECHA DE CREACION</th>
+                                <th scope="col">HORA SALIDA - ENTRADA</th>
+                                <!-- <th scope="col">CARRERA</th> -->
+                                <th scope="col">GRUPO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="dataFirmVale">
+                                <td class="align-middle"> {{dataFirmVale.nombreDocente}} </td>
+                                <td class="align-middle"> {{dataFirmVale.nombreEstudiante}} </td>
+                                <td class="align-middle"> {{dataFirmVale.nombre_lab}} </td>
+                                <td class="align-middle"> {{dataFirmVale.fecha}} </td>
+                                <td class="align-middle"> {{dataFirmVale.fecha_creacion}} </td>
+                                <td class="align-middle"> {{dataFirmVale.hora_salida}} -
+                                    {{dataFirmVale.hora_entrada}}
+                                </td>
+                                <!-- <td class="align-middle"> {{dataFirmVale.carrera}} </td> -->
+                                <td class="align-middle"> {{dataFirmVale.gradoGrupo}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">MATERIAL</th>
+                            <th scope="col">NO. INVENTARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataFirmValeMaterials">
+                            <td class="align-middle"> {{item.nombre}} </td>
+                            <td class="align-middle"> {{item.no_inv}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="firmVale(dataFirmVale.id_vale)" type="button" class="btn btn-blue text-light mr-2"
+                    data-dismiss="modal" [disabled]="!disable">FIRMAR</button>
+                <button (click)="removeVal(dataFirmVale.id_vale)" type="button" class="btn btn-warning mr-2"
+                    data-dismiss="modal">RECHAZAR</button>
+                <button type="button" class="btn btn-danger text-light ml-5" data-dismiss="modal">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>

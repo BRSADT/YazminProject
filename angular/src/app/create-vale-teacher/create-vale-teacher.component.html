@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+
+<div class="mx-auto mt-5 list-width text-center">
+    <p>SOLICITUD DE MAT., HERR. Y EQUIPO <span class="ml-5">FSGC-214-7-INS-0C3</span></p>
+    <form (ngSubmit)="saveVale()" id="saveValeForm" [formGroup]="valeForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="squad" placeholder="PLANTEL">
+            </div>
+            <div class="form-group col-md-6">
+                <input type="date" class="form-control" formControlName="date" placeholder="FECHA">
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="career" placeholder="CARRERA">
+        </div>
+        <div class="form-group">
+            <!-- <input type="text" class="form-control" formControlName="laboratory" placeholder="LABORATORIO O TALLER"> -->
+            <select class="form-control" formControlName="laboratory">
+                <option value="" selected>LABORATORIO O TALLER</option>
+                <option disabled></option>
+                <option *ngFor="let lab of dataLabs" [value]="lab.id_laboratorio"> {{lab.nombre_lab}} </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <h5>DATOS DEL ALUMNO</h5>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="nameTeacher" placeholder="NOMBRE">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="register" placeholder="REGISTRO">
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="group" placeholder="GRUPO">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="hora_salida">HORA DE SALIDA</label>
+                <input type="time" class="form-control" id="hora_salida" formControlName="hora_salida"
+                    placeholder="HR Salida">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="hora_entrada">HORA DE ENTRADA</label>
+                <input type="time" class="form-control" id="hora_entrada" formControlName="hora_entrada"
+                    placeholder="HR Entrada">
+            </div>
+        </div>
+        <ng-container *ngIf="items.length == 0">
+            <h5 class="text-center mb-4">Agrega Herramientas o Equipos en el botón de abajo</h5>
+        </ng-container>
+
+        <ng-container *ngIf="items.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="p-2">HERRAMIENTAS MAT O EQUIPO</th>
+                        <!-- <th class="p-2">No. DE CONTROL</th> -->
+                        <th class="p-2">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let item of items; let i = index">
+                        <td class="align-middle"> {{item.nombre}} </td>
+                        <!-- <td class="align-middle"> {{item.no_inv}} </td> -->
+                        <td class="align-middle">
+                            <button (click)="removeElement(i)" type="button" class="close">
+                                <span class="text-danger">&times;</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+
+        <div class="form-group">
+            <!-- <input type="text" class="form-control" formControlName="nameTeacher" placeholder="NOMBRE DOCENTE"> -->
+            <h5 class="font-weigth-bold"> {{teacherName}} </h5>
+        </div>
+        <button type="button" class="btn btn-blue text-light mr-5" data-toggle="modal"
+            data-target="#modalAddEquipment">Agregar Herr/Equip</button>
+        <button type="submit" class="btn btn-blue text-light" data-dismiss="modal" [disabled]="!btnSend">Enviar</button>
+    </form>
+
+</div>
+
+<div class="modal fade" id="modalAddEquipment" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modalAddEquipmentTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mx-auto m-0" id="modalAddEquipmentTitle">Agregar Herramientas/Equipos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mb-3 text-center">Toca el material para agregarlo</h5>
+                <div style="max-height: 720px; overflow-y: scroll;">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <!-- <th>Cantidad</th> -->
+                                <th>Nombre</th>
+                                <th>No. Inventario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr (click)="itemSelected(i, item.id_item, item.nombre, item.no_inventario)"
+                                *ngFor="let item of dataWarehouse; let i = index">
+                                <!-- <td class="align-middle">
+                                    <input class="form-control" style="width: 80px;" type="number" min="1" value="1">
+                                </td> -->
+                                <td class="align-middle"> {{item.nombre}} </td>
+                                <td class="align-middle"> {{item.no_inventario}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-blue text-light" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

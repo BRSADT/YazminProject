@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-blue">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ng-container *ngIf="login == 1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/dashboard">Paquete</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/createVale">Vale</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/createValePriori">Vale prioritario</a>
+                </li>
+            </ul>
+        </ng-container>
+
+        <ng-container *ngIf="login == 2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/teacherPackage">Crear Paquete</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/firmVales">Validar/Firma de Vales</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/createValeTeacher">Vale docente</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/extraclass">Horas extraclase</a>
+                </li>
+            </ul>
+        </ng-container>
+
+        <ng-container *ngIf="login == 3">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/dashboard-warehouse">Surtir Vales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Horario</a>
+                </li>-->
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/view-format">Peticiones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Llenado de base de datos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gráficas</a>
+                </li> 
+            </ul>
+        </ng-container>
+
+        <ng-container *ngIf="login == 4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/scheduleCoordinator">Horario</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/signatureRequest">Peticiones</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/databaseFilling">Llenado de base de datos</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/graphics">Gráficas</a>
+                </li>
+            </ul>
+        </ng-container>
+
+        <button (click)="logout()" class="btn btn-light text-blue my-2 my-sm-0">Cerrar sesión</button>
